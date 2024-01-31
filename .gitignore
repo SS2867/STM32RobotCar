@@ -1,3 +1,6 @@
+# Temporary files for Keil uVision
+project.uvguix.*
+
 # Prerequisites
 *.d
 
