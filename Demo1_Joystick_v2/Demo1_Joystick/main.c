@@ -83,7 +83,7 @@ int main(void)
 	UCSR0B = (0<<RXEN0)|(1<<TXEN0)|(0<<RXCIE0)|(1<<UDRIE0);
 	
 	TCCR1B = 0x0D;  // Timer 0: with prescaler 64, CTC, 1ms
-	OCR1A = 1526*2;
+	OCR1A = 1526;
 	TIMSK1 = (1<<OCIE1A);
 	
 	adcinit();
@@ -118,8 +118,8 @@ ISR(TIMER1_COMPA_vect){
 	}
 	joystick_check_XY = 1-joystick_check_XY;
 	if(joystick_X<35 && joystick_Y<80 && joystick_Y>20){ sprintf(tx_buffer, "/L");}
-	else if(joystick_X>65 && joystick_Y<80 && joystick_Y>20){ sprintf(tx_buffer, "/R");}
-	else if(joystick_Y>65 && joystick_X<80 && joystick_X>20){ sprintf(tx_buffer, "/F");}
+	else if(joystick_Y>70 && joystick_X<80 && joystick_X>20){ sprintf(tx_buffer, "/F");}
+	else if(joystick_X>65 && joystick_Y<70 && joystick_Y>20){ sprintf(tx_buffer, "/R");}
 	else if(joystick_Y<35 && joystick_X<80 && joystick_X>20){ sprintf(tx_buffer, "/B");}
 	else{ sprintf(tx_buffer, "/S");}
 }

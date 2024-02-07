@@ -1,3 +1,9 @@
+# Zip files to be submitted
+*.zip
+
+# Demo video
+*.mp4
+
 # Temporary files for Keil uVision
 *.uvguix.*
 
