@@ -98,15 +98,15 @@ void motor_init(void){
 void setMotor(int motor, int direction, int speed){
 	if(motor&2){
 		switch (direction){
-			case 0: case 3: GPIO_WriteBit(GPIOB, GPIO_Pin_5, (BitAction)0); break;
-			case 1: GPIO_WriteBit(GPIOB, GPIO_Pin_5, (BitAction)1); break;
+			case 0: case 2: GPIO_WriteBit(GPIOB, GPIO_Pin_5, (BitAction)0); break;
+			case 1: case 3: GPIO_WriteBit(GPIOB, GPIO_Pin_5, (BitAction)1); break;
 		}
 		if(speed>=0 && speed<=100){TIM_SetCompare4(TIM3, speed); }
 	}
 	if(motor&1){
 		switch (direction){
-			case 0: case 2: GPIO_WriteBit(GPIOA, GPIO_Pin_8, (BitAction)1); break;
-			case 1: case 3: GPIO_WriteBit(GPIOA, GPIO_Pin_8, (BitAction)0); break;
+			case 0: case 3: GPIO_WriteBit(GPIOA, GPIO_Pin_8, (BitAction)1); break;
+			case 1: case 2: GPIO_WriteBit(GPIOA, GPIO_Pin_8, (BitAction)0); break;
 		}	
 		if(speed>=0 && speed<=100){TIM_SetCompare3(TIM2, min(speed+0, 100)); }
 	}

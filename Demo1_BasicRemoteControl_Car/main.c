@@ -15,17 +15,7 @@ void USART2_IRQHandler() {
 		rx_buffer[18] = ch;
 		msg[0] = ch;
 		
-		/*int opand = checkPositiveInteger(str_slice(rx_buffer, 18-2+1, 2));
-		if (opand!=-1){ 
-			if(str_is_equal(str_slice(rx_buffer, 18-4+1, 2), "/X")){
-				joystick_x = opand; Joystick_control(joystick_x, joystick_y);
-				sprintf(msg, "//Set joystick X %d//", opand);
-			}else if (str_is_equal(str_slice(rx_buffer, 18-4+1, 2), "/Y")){
-				joystick_y = opand; Joystick_control(joystick_x, joystick_y);
-				sprintf(msg, "//Set joystick Y %d//", opand);
-			}		
-		}*/
-		int opand = checkPositiveInteger_2char(rx_buffer[17], rx_buffer[18]);
+		/*int opand = checkPositiveInteger_2char(rx_buffer[17], rx_buffer[18]);
 		if (opand!=-1 && rx_buffer[15]=='/'){ 
 			if(rx_buffer[16]=='X'){
 				joystick_x = opand; Joystick_control(joystick_x, joystick_y);
@@ -34,7 +24,16 @@ void USART2_IRQHandler() {
 				joystick_y = opand; Joystick_control(joystick_x, joystick_y);
 				sprintf(msg, "//Set joystick Y %d//", opand);
 			}		
-		}
+		}*/
+		if (rx_buffer[17]=='/'){
+			switch(rx_buffer[18]){
+				case 'F': setMotor(3, 0, 100); break;
+				case 'B': setMotor(3, 1, 100); break;
+				case 'L': setMotor(3, 2, 100); break;
+				case 'R': setMotor(3, 3, 100); break;
+				case 'S': setMotor(3, 0, 0); break;
+			}
+		} 
 	}
 	if(USART_GetITStatus(USART2, USART_IT_TC) != RESET) {
 		if (msg[0] != 0){USART_SendData(USART2, msg[0]);}
