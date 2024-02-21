@@ -1,7 +1,10 @@
 #include "stm32f10x.h"                  // Device header
 #include "utils.h"
 #include "Motor.h"
+#include <stdio.h>
+#include <string.h>
 
+extern char msg[20];
 int readLineTracker(void){
 	return (16*GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0)+
 					8*GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_4)+
@@ -23,8 +26,26 @@ void LineTracker_init(void){
 	GPIO_Init(GPIOA, &GPIO_InitStruct);
 }
 
-void lineTracking(){
-	
+int SPEED_STRAIGHT = 30;
+int SPEED_CURVE_1 = 20;
+int SPEED_CURVE_2 = 15;
+
+int line_prev1 = 0;
+
+void lineTracking(void){
+	int line = readLineTracker();
+	if (((line&8)==0||(line&0x10)==0) && (line&2)>0){ //left
+		setMotor(1, 0, (int)((line&0x10)==0? SPEED_CURVE_2:SPEED_CURVE_1));
+		setMotor(2, 0, (int)(SPEED_STRAIGHT));
+		sprintf(msg , "\n\r>L line=%X", line);
+	}else if ((line&8)>0 && (((line&2)==0)||((line&1)==0))){
+		setMotor(2, 0, (int)((line&0x1)==0? SPEED_CURVE_2:SPEED_CURVE_1));
+		setMotor(1, 0, (int)(SPEED_STRAIGHT));
+		sprintf(msg , "\n\r>R line=%X", line);
+	}else{
+		setMotor(3, 0, (int)(SPEED_STRAIGHT));
+		sprintf(msg , "\n\r>F line=%X", line);
+	}
 
 
 }

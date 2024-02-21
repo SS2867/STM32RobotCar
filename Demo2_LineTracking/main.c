@@ -57,8 +57,9 @@ void USART2_IRQHandler() {
 int sTicks = 0;
 void TIM2_IRQHandler(void){
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update)!=RESET){
-		sTicks ++; if (sTicks>=1000){
-			sprintf(msg, "D"); sTicks = 0;
+		sTicks ++; if (sTicks>=2){
+			sprintf(msg, "-%X", readLineTracker()); sTicks = 0;
+			lineTracking();
 		}
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	}
@@ -69,8 +70,10 @@ int main(){
 	USART2_Init();
 	LineTracker_init();
 	strcpy(msg , "We are ready!");
+  //setMotor(3, 0, 30);
 	while(1){
-		
+		//lineTracking();
+		//exhaustive_delay(2);
 	
 	}
 }
