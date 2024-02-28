@@ -57,7 +57,7 @@ void USART2_IRQHandler() {
 int sTicks = 0;
 void TIM2_IRQHandler(void){
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update)!=RESET){
-		sTicks ++; if (sTicks>=2){
+		sTicks ++; if (sTicks>=5){
 			sprintf(msg, "-%X", readLineTracker()); sTicks = 0;
 			lineTracking();
 		}
@@ -70,6 +70,8 @@ int main(){
 	USART2_Init();
 	LineTracker_init();
 	strcpy(msg , "We are ready!");
+	
+	setMotor(3, 0, 100);
   //setMotor(3, 0, 30);
 	while(1){
 		//lineTracking();

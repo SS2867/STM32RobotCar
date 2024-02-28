@@ -50,8 +50,9 @@ int sTicks = 0;
 int time = 0;
 void TIM2_IRQHandler(void){
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update)!=RESET){
-		sTicks ++; if (sTicks>=10){
+		sTicks ++; if (sTicks>=1){
 			sprintf(msg, "\n\r%d", readDistance()); sTicks = 0;
+			parking();
 		}
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 		

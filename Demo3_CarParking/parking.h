@@ -3,6 +3,7 @@
 
 void rangeFinderInit(void);
 int readDistance(void);
+void parking(void);
 
 #endif
 
