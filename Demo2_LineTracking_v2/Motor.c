@@ -110,7 +110,7 @@ void motor_init(void){
 int getMotorOdom(void){return TIM_GetCounter(TIM4);}
 
 /**
-  * @brief  set the direction and speed of the motor
+  * @brief  set thue direction and speed of the motor
   * @param  motor: 1 = left, 2 = right, 3 = both
   * @param  direction: 0=forward, 1=back, 2=left, 3=right, else=noeffect
   * @param  speed: int from 0 to 100
