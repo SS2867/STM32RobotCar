@@ -10,6 +10,7 @@ char rx_buffer[20] = "";
 char msg[20] = "";
 int joystick_x = 50;
 int joystick_y = 50;
+extern int adjust_l_r_lock_ticker;
 void USART2_IRQHandler() {
 	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET) {
 		char ch = (unsigned char) USART_ReceiveData(USART2); 
@@ -27,13 +28,13 @@ void USART2_IRQHandler() {
 				sprintf(msg, "//Set joystick Y %d//", opand);
 			}		
 		}*/
-		if (rx_buffer[17]=='/'){
+		if (1){//  (rx_buffer[17]=='/'){
 			switch(rx_buffer[18]){
 				case 'F': setMotor(3, 0, 100); break;
 				case 'B': setMotor(3, 1, 100); break;
-				case 'L': setMotor(3, 2, 100); break;
-				case 'R': setMotor(3, 3, 100); break;
-				case 'S': setMotor(3, 0, 0); break;
+				case 'L': adjust_l_r_lock_ticker=-100; break;
+				case 'R': adjust_l_r_lock_ticker=100; break;
+				case 'S': adjust_l_r_lock_ticker=0; break;
 			}
 		}
 		if (rx_buffer[14]=='/'&&rx_buffer[15]=='k'&&rx_buffer[16]=='e'&&rx_buffer[17]=='y'){
@@ -57,10 +58,10 @@ void USART2_IRQHandler() {
 int sTicks = 0;
 void TIM2_IRQHandler(void){
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update)!=RESET){
-		sTicks ++; if (sTicks%2==0){
+		sTicks ++; if (sTicks%1==0){
 			if (sTicks==50){
 				sprintf(msg, "-%d", TIM_GetCounter(TIM4)); sTicks = 0;}
-			lineTracking();
+			routeSelect();
 		}
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	}

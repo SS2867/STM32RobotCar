@@ -2,7 +2,7 @@
 *.zip
 
 # Demo video
-*.mp4
+*_submission.mp4
 
 # Temporary files for Keil uVision
 *.uvguix.*

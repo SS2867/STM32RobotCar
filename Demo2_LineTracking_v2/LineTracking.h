@@ -3,6 +3,7 @@
 int readLineTracker(void);
 void LineTracker_init(void);
 void lineTracking(void);
+void routeSelect(void);
 
 #endif
 

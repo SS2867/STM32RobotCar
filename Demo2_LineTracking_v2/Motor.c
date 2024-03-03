@@ -97,14 +97,14 @@ void motor_init(void){
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 	
 	TIM_TimeBaseInitTypeDef timerInitStructure;
-	timerInitStructure.TIM_Prescaler = 30-1;
+	timerInitStructure.TIM_Prescaler = 5-1;
 	timerInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	timerInitStructure.TIM_Period = 65536-1;
 	timerInitStructure.TIM_ClockDivision = 0;
 	timerInitStructure.TIM_RepetitionCounter = 0;
 	TIM_TimeBaseInit(TIM4, &timerInitStructure);
 	TIM_Cmd(TIM4, ENABLE);
-	TIM_TIxExternalClockConfig(TIM4, TIM_TIxExternalCLK1Source_TI1, TIM_ICPolarity_Rising, 0);
+	TIM_TIxExternalClockConfig(TIM4, TIM_TIxExternalCLK1Source_TI1, TIM_ICPolarity_Rising, 0xF);
 }
 
 int getMotorOdom(void){return TIM_GetCounter(TIM4);}
