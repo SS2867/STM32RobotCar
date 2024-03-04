@@ -21,15 +21,16 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
 Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
-D:\文档\工作文档\EIE3105-S2\STM32RobotCar\Demo3_CarParking_v2\Demo3_CarParking.uvprojx
+D:\文档\工作文档\EIE3105-S2\STM32RobotCar\Demo4_RelayRace\Demo4_RelayRace.uvprojx
 Project File Date:  03/04/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling parking.c...
+compiling main.c...
+compiling LineTracking.c...
 linking...
-Program Size: Code=6156 RO-data=268 RW-data=120 ZI-data=1672  
+Program Size: Code=6424 RO-data=268 RW-data=136 ZI-data=1672  
 ".\Objects\Demo1_BasicRemoteControl_Car.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -67,8 +68,8 @@ Package Vendor: Keil
       Include file:  Device\StdPeriph_Driver\inc\stm32f10x_usart.h
 
    * Component: Keil::Device:StdPeriph Drivers:TIM:3.5.0
-      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_tim.h
       Source file:   Device\StdPeriph_Driver\src\stm32f10x_tim.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_tim.h
 
    * Component: Keil::Device:StdPeriph Drivers:RCC:3.5.0
       Include file:  Device\StdPeriph_Driver\inc\stm32f10x_rcc.h
@@ -79,23 +80,23 @@ Package Vendor: Keil
       Source file:   Device\StdPeriph_Driver\src\stm32f10x_i2c.c
 
    * Component: Keil::Device:StdPeriph Drivers:GPIO:3.5.0
-      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_gpio.h
       Source file:   Device\StdPeriph_Driver\src\stm32f10x_gpio.c
+      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_gpio.h
 
    * Component: Keil::Device:StdPeriph Drivers:Framework:3.5.1
-      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_conf.h
+      Include file:  Device\StdPeriph_Driver\inc\misc.h
+      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_it.c
       Source file:   Device\StdPeriph_Driver\src\misc.c
       Include file:  Device\StdPeriph_Driver\templates\stm32f10x_it.h
-      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_it.c
-      Include file:  Device\StdPeriph_Driver\inc\misc.h
+      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_conf.h
 
    * Component: Keil::Device:StdPeriph Drivers:EXTI:3.5.0
-      Source file:   Device\StdPeriph_Driver\src\stm32f10x_exti.c
       Include file:  Device\StdPeriph_Driver\inc\stm32f10x_exti.h
+      Source file:   Device\StdPeriph_Driver\src\stm32f10x_exti.c
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
       Source file:   Device\Source\ARM\startup_stm32f10x_md.s
+      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
       Source file:   Device\Source\system_stm32f10x.c
       Include file:  RTE_Driver\Config\RTE_Device.h
 
