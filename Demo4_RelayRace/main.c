@@ -55,13 +55,13 @@ void USART2_IRQHandler() {
 
 
 
-
+extern int state;
 int sTicks = 0;
 void TIM2_IRQHandler(void){
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update)!=RESET){
 		sTicks ++; if (sTicks%1==0){
-			if (sTicks==10){
-				sprintf(msg, "\r- "); sTicks = 0;}
+			if (sTicks==10){ 
+				sprintf(msg, "\r>%d ", state); sTicks = 0;}
 			routeRelay1();
 			//parking(distance);
 		}

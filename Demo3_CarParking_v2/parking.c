@@ -65,13 +65,14 @@ int readDistance(void){
 int parking_brake_ticker = 30;
 void parking(int d){
 	if (d>50){
-		setMotor(3, 0, 70);
+		setMotor(1, 0, 80 );
+		setMotor(2, 0, 90);
 		if(parking_brake_ticker<30){parking_brake_ticker++;}
-	}else if (d>30){
+	}else if (d>13){
 		setMotor(3, 0, 40);
 		if(parking_brake_ticker<30){parking_brake_ticker++;}
 	}else if (d>8){
-		setMotor(3, 0, 20);
+		setMotor(3, 0, 25);
 		if(parking_brake_ticker<30){parking_brake_ticker++;}
 	}else{
 		if (parking_brake_ticker ){
