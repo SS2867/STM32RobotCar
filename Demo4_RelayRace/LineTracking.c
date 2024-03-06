@@ -21,12 +21,12 @@ int SPEED_RIGHT_1 = 64;
 int SPEED_LEFT_1 = 36;
 int SPEED_RIGHT_2 = 67;
 int SPEED_LEFT_2 = 33;*/
-int SPEED_FORWARD = 40;
+int SPEED_FORWARD = 35;
 int SPEED_FORWARD_1 = 30;
 int SPEED_FORWARD_2 = 35;
 int SPEED_BRAKE = 30 ;
-int SPEED_ADJUST_1 = 70; int SPEED_ADJUST;
-int SPEED_ADJUST_2 = 73;
+int SPEED_ADJUST_1 = 73; int SPEED_ADJUST;
+int SPEED_ADJUST_2 = 74;
 int SPEED_RIGHT_1 = 56;
 int SPEED_LEFT_1 = 44;
 int SPEED_RIGHT_2 = 63;
@@ -82,7 +82,7 @@ void lineTracking(void){
 			if (line==0 && brake_buffer_ticker!=0){}else{ 
 				if (adjust_l_r_lock_ticker<0){adjust_l_r_lock_ticker++; adjust_l_r=0;}
 				else if (adjust_l_r_lock_ticker>0){adjust_l_r_lock_ticker--; adjust_l_r=1;}
-				if (adjustCnt<4){ SPEED_ADJUST = SPEED_ADJUST_1;}else{SPEED_ADJUST=SPEED_ADJUST_2;}
+				if (adjustCnt<6){ SPEED_ADJUST = SPEED_ADJUST_1;}else{SPEED_ADJUST=SPEED_ADJUST_2;}
 				if (adjustCnt<10){adjustCnt++;}
 				else {SPEED_ADJUST = SPEED_ADJUST_2;}
 				if (adjust_l_r){
@@ -158,7 +158,7 @@ void routeSelect(void){
 int darkCnt(int line){
 	int darkCnt = 0;
 	for(int i=0; i<5; i++){if((line&(1<<i))==0){darkCnt++;}}
-	return darkCnt;
+	return darkCnt * (brake_buffer_ticker==0);
 }
 
 int d[5] = {50, 50, 50, 50, 50};
@@ -172,7 +172,7 @@ void routeRelay1(void){ 	// Car 1
 		lineTracking(); 
 		
 		int reached = (routeCount>50? 1:0); 	
-		for(int i=0; i<5; i++){if(d[i]>20){reached=0;}} 
+		for(int i=0; i<5; i++){if(d[i]>30){reached=0;}} 
 		if(reached==1){
 			state = 1;
 			routeCount = 0;
@@ -183,7 +183,7 @@ void routeRelay1(void){ 	// Car 1
 	}else if (state==2){  // Car 1 wait for Car 2
 		setMotor(3, 0, 0);
 		int reached=1;
-		for(int i=0; i<5; i++){if(d[i]>20){reached=0;}}
+		for(int i=0; i<5; i++){if(d[i]>40){reached=0;}}
 		if(reached && (routeCount>1500)){
 			state = 3;
 			routeCount=0;
@@ -191,7 +191,7 @@ void routeRelay1(void){ 	// Car 1
 	}else if (state==3){ // Car 1: wait a bit for Car 2 to detect
 		if(routeCount>250){state=4; routeCount=0;}
 	}else if (state==4){
-		if (routeCount<50){
+		if (routeCount<40){
 			setMotor(3, 3, 50);
 		}else{
 			lineTracking(); 
@@ -225,21 +225,22 @@ void routeRelay2(void){ 	// Car 2
 	if (state==0){ 	// Car 2 wait for Car 1
 		setMotor(3, 0, 0);
 		int reached=1;
-		for(int i=0; i<5; i++){if(d[i]>20){reached=0;}}
+		for(int i=0; i<5; i++){if(d[i]>30){reached=0;}}
 		if(reached && (routeCount>200)){
 			state = 1;
 			routeCount=0;
 		}
 	}else if (state==1){  // Car 2 wait a bit for Car 1 to detect
 		//lineTracking(); 
-		if(routeCount>250){state = 2;}
+		if(routeCount>250){state = 2; routeCount=0;}
 	}else if (state==2){  // Car 2:  C -> X -> (A)
-		if (routeCount<50){
-			setMotor(3, 3, 50);
-		}else{
-			if (routeCount<250){adjust_l_r=1;}
+		if (routeCount<60){
+			setMotor(3, 2, 40);
+		}else if(routeCount<130){setMotor(3, 0, 0);}
+		else{
+			if (routeCount<700){adjust_l_r=1;}
 			lineTracking(); 
-			if((darkCnt(line)>=3) && (routeCount>500)){
+			if((darkCnt(line)>=3) && (routeCount>1000)){
 				routeCount = 0;
 				state = 3;
 			}
