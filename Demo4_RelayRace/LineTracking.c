@@ -22,11 +22,11 @@ int SPEED_LEFT_1 = 36;
 int SPEED_RIGHT_2 = 67;
 int SPEED_LEFT_2 = 33;*/
 int SPEED_FORWARD = 35;
-int SPEED_FORWARD_1 = 30;
-int SPEED_FORWARD_2 = 35;
-int SPEED_BRAKE = 30 ;
-int SPEED_ADJUST_1 = 73; int SPEED_ADJUST;
-int SPEED_ADJUST_2 = 74;
+int SPEED_FORWARD_1 = 33;
+int SPEED_FORWARD_2 = 40;
+int SPEED_BRAKE = 35 ;
+int SPEED_ADJUST_1 = 75; int SPEED_ADJUST;
+int SPEED_ADJUST_2 = 77;
 int SPEED_RIGHT_1 = 56;
 int SPEED_LEFT_1 = 44;
 int SPEED_RIGHT_2 = 63;
@@ -63,7 +63,7 @@ void lineTracking(void){
 	}*/
 	if(line==0x1B){
 		setMotor(3, 0, SPEED_FORWARD);
-		if (forward_ticker <= 10){forward_ticker++;}else{brake_ticker=3;}
+		if (forward_ticker <= 8){forward_ticker++;}else{brake_ticker=4;}
 		//sprintf(msg, "\n\rForward");
 	}else if (brake_ticker){
 		setMotor(3, 1, SPEED_BRAKE);
@@ -87,18 +87,26 @@ void lineTracking(void){
 				else {SPEED_ADJUST = SPEED_ADJUST_2;}
 				if (adjust_l_r){
 					if ((line&0x01)==0){Joystick_control(SPEED_RIGHT_2-adjustCnt/3, SPEED_ADJUST); adjust_l_r=0;}
-					else if ((line&0x10)==0){Joystick_control(SPEED_LEFT_2+adjustCnt/3, SPEED_ADJUST);}
+					/*
 					else{
 						if((line&0x02)==0){Joystick_control(SPEED_RIGHT_1, SPEED_ADJUST); adjust_l_r=0;}
 						else if ((line&0x08)==0){Joystick_control(SPEED_LEFT_1, SPEED_ADJUST);}
-					}
+					}*/
+					else if((line&0x02)==0){Joystick_control(SPEED_RIGHT_1, SPEED_ADJUST); adjust_l_r=0;}
+					else if ((line&0x08)==0){Joystick_control(SPEED_LEFT_1, SPEED_ADJUST);}
+					else if ((line&0x10)==0){Joystick_control(SPEED_LEFT_2+adjustCnt/3, SPEED_ADJUST);}
+
 				}else{
 					if ((line&0x10)==0){Joystick_control(SPEED_LEFT_2+adjustCnt/3, SPEED_ADJUST); adjust_l_r=1;}
-					else if ((line&0x01)==0){Joystick_control(SPEED_RIGHT_2-adjustCnt/3, SPEED_ADJUST);}
+					/*else if ((line&0x01)==0){Joystick_control(SPEED_RIGHT_2-adjustCnt/3, SPEED_ADJUST);}
 					else{
 						if((line&0x08)==0){Joystick_control(SPEED_LEFT_1, SPEED_ADJUST); adjust_l_r=1;}
 						else if ((line&0x02)==0){Joystick_control(SPEED_RIGHT_1, SPEED_ADJUST);}
-					}
+					}*/
+					else if((line&0x08)==0){Joystick_control(SPEED_LEFT_1, SPEED_ADJUST); adjust_l_r=1;}
+					else if ((line&0x01)==0){Joystick_control(SPEED_RIGHT_2-adjustCnt/3, SPEED_ADJUST);}
+					else if ((line&0x02)==0){Joystick_control(SPEED_RIGHT_1, SPEED_ADJUST);}
+					
 				}
 			}
 		}else{adjust_ticker--;}
@@ -234,11 +242,11 @@ void routeRelay2(void){ 	// Car 2
 		//lineTracking(); 
 		if(routeCount>250){state = 2; routeCount=0;}
 	}else if (state==2){  // Car 2:  C -> X -> (A)
-		if (routeCount<60){
-			setMotor(3, 2, 40);
-		}else if(routeCount<130){setMotor(3, 0, 0);}
+		if (routeCount<5){setMotor(3, 2, 100);  SPEED_FORWARD = SPEED_FORWARD_1;}
+		else if(routeCount<45){setMotor(3, 2, 40); }
+		else if(routeCount<70){setMotor(3, 0, 0);}
 		else{
-			if (routeCount<700){adjust_l_r=1;}
+			if (routeCount<500){adjust_l_r=1;}
 			lineTracking(); 
 			if((darkCnt(line)>=3) && (routeCount>1000)){
 				routeCount = 0;
@@ -246,21 +254,38 @@ void routeRelay2(void){ 	// Car 2
 			}
 		}
 	}else if (state==3){ // Car 2:  -> A -> B -> C
-		if(routeCount<30){setMotor(3, 2, 50);}
+		if(routeCount<100){lineTracking();}
+		else if(routeCount<110){setMotor(3, 0, 0); SPEED_FORWARD = SPEED_FORWARD_2;}
+		else if (routeCount<113){setMotor(3, 2, 80);}
+		else if(routeCount<168){setMotor(3, 2, 40); }
 		else{
-			if (routeCount<200){adjust_l_r=1;}
+			if (routeCount<500){adjust_l_r=1;}
 			lineTracking(); 
 			int reached=1;
-			for(int i=0; i<5; i++){if(d[i]>20){reached=0;}}
+			for(int i=0; i<5; i++){if(d[i]>35){reached=0;}}
+			if(reached){
+				state = 5;
+				routeCount = 0;
+				SPEED_FORWARD = SPEED_FORWARD_1;
+			}			
+			//if((darkCnt(line)>=3) && routeCount>=300) {routeCount=0; state=4; } 
+		}
+	}else if (state==4){ // Car 2:  -> B -> C
+		lineTracking();
+		if(routeCount==200){setMotor(3, 0, 0); SPEED_FORWARD = SPEED_FORWARD_1;}
+		if(routeCount>200){ 
+			int reached=1;
+			for(int i=0; i<5; i++){if(d[i]>40){reached=0;}}
 			if(reached){
 				state = 4;
 				routeCount = 0;
+				SPEED_FORWARD = SPEED_FORWARD_1;
 			}			
 		}
-	}else if (state==4){ // Car 2 arrive at C
+	}else if (state==5){ // Car 2 arrive at C
 		lineTracking();
-		if((darkCnt(line)>=3)) {routeCount=0; state=5; } 
-	}else if (state==5) {setMotor(3, 0, 0);}
+		if((darkCnt(line)>=3)) {routeCount=0; state=6; } 
+	}else if (state==6) {setMotor(3, 0, 0);}
 	/*if (odom==60){SPEED_ADJUST=SPEED_ADJUST_1;}
 	else if (odom==80){SPEED_FORWARD=SPEED_FORWARD_2;}
 	else if(odom==130){SPEED_FORWARD=SPEED_FORWARD_1;}
