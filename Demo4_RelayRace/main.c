@@ -62,7 +62,7 @@ void TIM2_IRQHandler(void){
 		sTicks ++; if (sTicks%1==0){
 			if (sTicks==10){ 
 				sprintf(msg, "\r>%dcm %d ", readDistance(), state); sTicks = 0;}
-			routeRelay1();
+			routeRelay2();
 			//parking(distance);
 		}
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
