@@ -62,7 +62,7 @@ void TIM2_IRQHandler(void){
 		sTicks ++; if (sTicks%1==0){
 			int distance = readDistance();
 			if (sTicks==10){
-				sprintf(msg, "\r-%5d ", distance); sTicks = 0;}
+				sprintf(msg, "\r>%5d ", distance); sTicks = 0;}
 			//routeSelect();
 			parking(distance);
 		}

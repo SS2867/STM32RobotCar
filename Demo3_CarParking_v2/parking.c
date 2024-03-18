@@ -31,7 +31,7 @@ void rangeFinderInit(void){
 	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_TimeBaseInitStructure.TIM_Period = 65536 - 1;
-	TIM_TimeBaseInitStructure.TIM_Prescaler = 3300/9 - 1;
+	TIM_TimeBaseInitStructure.TIM_Prescaler = 3300/1 - 1;
 	TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0;
 	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseInitStructure);
 	
@@ -67,13 +67,13 @@ void parking(int d){
 	if (d>50){
 		setMotor(1, 0, 80 );
 		setMotor(2, 0, 90);
-		if(parking_brake_ticker<30){parking_brake_ticker++;}
+		if(parking_brake_ticker<30*9){parking_brake_ticker++;}
 	}else if (d>13){
 		setMotor(3, 0, 40);
-		if(parking_brake_ticker<30){parking_brake_ticker++;}
+		if(parking_brake_ticker<30*9){parking_brake_ticker++;}
 	}else if (d>8){
 		setMotor(3, 0, 25);
-		if(parking_brake_ticker<30){parking_brake_ticker++;}
+		if(parking_brake_ticker<30*9){parking_brake_ticker++;}
 	}else{
 		if (parking_brake_ticker ){
 			setMotor(3, 1, 25);
