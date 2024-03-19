@@ -4,8 +4,10 @@
 # Demo video
 *_submission.mp4
 
-# Temporary files for Keil uVision
+# Temporary and log files for Keil uVision
 *.uvguix.*
+*.htm
+*.crf
 
 # Prerequisites
 *.d
@@ -44,6 +46,7 @@
 *.i*86
 *.x86_64
 *.hex
+*.axf
 
 # Debug files
 *.dSYM/

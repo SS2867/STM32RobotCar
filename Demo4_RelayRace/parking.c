@@ -5,6 +5,8 @@
 
 extern char msg[];
 
+extern int SYS_CLK_MULT;
+
 void rangeFinderInit(void){
 	// A0 Trig -> PA15 TIM2 FullRemap Ch1 
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
@@ -31,7 +33,7 @@ void rangeFinderInit(void){
 	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_TimeBaseInitStructure.TIM_Period = 65536 - 1;
-	TIM_TimeBaseInitStructure.TIM_Prescaler = 3300/9 - 1;
+	TIM_TimeBaseInitStructure.TIM_Prescaler = 367*SYS_CLK_MULT - 1;
 	TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0;
 	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseInitStructure);
 	

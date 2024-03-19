@@ -53,17 +53,25 @@ void USART2_IRQHandler() {
 	}
 }
 
-
+int SYS_CLK_MULT = 9;
 
 extern int state;
 int sTicks = 0;
+extern int d[5];
 void TIM2_IRQHandler(void){
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update)!=RESET){
 		sTicks ++; if (sTicks%1==0){
-			if (sTicks==10){ 
-				sprintf(msg, "\r>%dcm %d ", readDistance(), state); sTicks = 0;}
+			if (sTicks==(11*SYS_CLK_MULT)){
+				for(int i=0; i<4;i++) { d[i]=d[i+1]; }
+				d[4] = readDistance();
+				
+				sprintf(msg, "\r>%5dcm %d %2X ", d[4], state, readLineTracker()); 
+				
+				sTicks = 0;
+			}
 			routeRelay2();
-			//parking(distance);
+		
+		
 		}
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	}
