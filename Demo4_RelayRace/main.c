@@ -58,14 +58,15 @@ int SYS_CLK_MULT = 9;
 extern int state;
 int sTicks = 0;
 extern int d[5];
+extern int adjust_l_r;
 void TIM2_IRQHandler(void){
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update)!=RESET){
 		sTicks ++; if (sTicks%1==0){
-			if (sTicks==(11*SYS_CLK_MULT)){
+			if (sTicks==(6*SYS_CLK_MULT)){
 				for(int i=0; i<4;i++) { d[i]=d[i+1]; }
 				d[4] = readDistance();
 				
-				sprintf(msg, "\r>%5dcm %d %2X ", d[4], state, readLineTracker()); 
+				sprintf(msg, "\r>%5dcm %d %2X %d", d[4], state, readLineTracker(), adjust_l_r); 
 				
 				sTicks = 0;
 			}

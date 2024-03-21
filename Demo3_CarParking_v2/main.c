@@ -57,14 +57,17 @@ void USART2_IRQHandler() {
 
 
 int sTicks = 0;
+int distance = 0;
 void TIM2_IRQHandler(void){
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update)!=RESET){
 		sTicks ++; if (sTicks%1==0){
-			int distance = readDistance();
-			if (sTicks==10){
-				sprintf(msg, "\r>%5d ", distance); sTicks = 0;}
+			
+			if (sTicks==5){
+				distance = readDistance();
+				sprintf(msg, "\r>%5dmm ", distance); sTicks = 0;}
+				parking(distance);
 			//routeSelect();
-			parking(distance);
+			
 		}
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	}
@@ -77,11 +80,11 @@ int main(){
 	rangeFinderInit();
 	strcpy(msg , "We are ready!");
 	
-	setMotor(3, 0, 0);
+	setMotor(3, 0, 100);
 	while(1){
 		//lineTracking();
 		//exhaustive_delay(2);
-	
+		
 	}
 }
 
