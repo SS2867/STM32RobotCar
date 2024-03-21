@@ -57,15 +57,17 @@ void USART2_IRQHandler() {
 
 
 int sTicks = 0;
-int distance = 0;
+int distance_1 = 0;
+int distance_2 = 0;
 void TIM2_IRQHandler(void){
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update)!=RESET){
 		sTicks ++; if (sTicks%1==0){
 			
 			if (sTicks==5){
-				distance = readDistance();
-				sprintf(msg, "\r>%5dmm ", distance); sTicks = 0;}
-				parking(distance);
+				distance_1 = distance_2;
+				distance_2 = readDistance();
+				sprintf(msg, "\r>%5dmm ", distance_1); sTicks = 0;}
+				parking(distance_1, distance_2);
 			//routeSelect();
 			
 		}

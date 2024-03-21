@@ -64,9 +64,9 @@ int readDistance(void){
 
 int parking_brake_ticker = 30;
 int parking_state = 1;
-void parking(int d){
-	if ((parking_state==1) && (d>180)){parking_state=0;}
-	else if ((parking_state==0) && (d<154)){parking_state=1;}
+void parking(int d1, int d2){
+	if ((parking_state==1) && (d1>180) && (d2>180)){parking_state=0;}
+	else if ((parking_state==0) && (d1<165) && (d2<165)){parking_state=1;}
 	if (parking_state==0){
 		setMotor(1, 0, 100 );
 		setMotor(2, 0, 94 );
