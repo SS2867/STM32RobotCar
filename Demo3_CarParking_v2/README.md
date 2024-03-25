@@ -4,8 +4,11 @@ On a given arena (map), the car needs to park in front of the barrier from 3 des
 
 ## Benchmark
 The car cannot hit the barrier
+
 Total distance to the barrier on the 3 track (as close as possible)
+
 Total time used for the car to finish the parking (as fast as possible)
+
 
 ## Result
 |Track                |Distance   |Time (frames, in 30 fps)|

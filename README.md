@@ -11,6 +11,13 @@ PB0(A3), PA4(A2), PA5(D13), PA9(D8), PA7(D11): 5-way Linetracker (L->R)
 PB6 (D10, TIM4 Ch1): R wheel encoder counter
 
 PA6 (D12, TIM3 Ch1) -> PA1(A1), PA0 (A0): Echo and Trigger of HCSR-04 range finder
+
+### Pin Functions in demo 5:
+Unless specified, all other connections follows the part `Pin Functions in demo 3 & 4`
+
+PB1 (TIM3 Ch4): L wheel encoder counter
+
+PA6 (TIM3 Ch1): R wheel encoder counter
  
 
 ### Disclaimer
