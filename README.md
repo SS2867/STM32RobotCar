@@ -15,9 +15,7 @@ PA6 (D12, TIM3 Ch1) -> PA1(A1), PA0 (A0): Echo and Trigger of HCSR-04 range find
 ### Pin Functions in demo 5:
 Unless specified, all other connections follows the part `Pin Functions in demo 3 & 4`
 
-PB1 (TIM3 Ch4): L wheel encoder counter
-
-PA6 (TIM3 Ch1): R wheel encoder counter
+PA6 (TIM3 Ch1): L wheel encoder counter
  
 
 ### Disclaimer

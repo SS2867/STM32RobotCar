@@ -19,22 +19,12 @@ void USART2_IRQHandler() {
 		rx_buffer[18] = ch;
 		msg[0] = ch;
 		
-		/*int opand = checkPositiveInteger_2char(rx_buffer[17], rx_buffer[18]);
-		if (opand!=-1 && rx_buffer[15]=='/'){ 
-			if(rx_buffer[16]=='X'){
-				joystick_x = opand; Joystick_control(joystick_x, joystick_y);
-				sprintf(msg, "//Set joystick X %d//", opand);
-			}else if (rx_buffer[16]=='Y'){
-				joystick_y = opand; Joystick_control(joystick_x, joystick_y);
-				sprintf(msg, "//Set joystick Y %d//", opand);
-			}		
-		}*/
 		if (1){//  (rx_buffer[17]=='/'){
 			switch(rx_buffer[18]){
 				case 'F': setMotor(3, 0, 100); break;
 				case 'B': setMotor(3, 1, 100); break;
-				case 'L': adjust_l_r_lock_ticker=-100; break;
-				case 'R': adjust_l_r_lock_ticker=100; break;
+				case 'L': //adjust_l_r_lock_ticker=-100; break;
+				case 'R': //adjust_l_r_lock_ticker=100; break;
 				case 'S': readDistance(); break;
 			}
 		}
