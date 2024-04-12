@@ -1,6 +1,16 @@
 # STM32RobotCar
 Code for STM32 Robot Car to do line tracking, parking, relay race. This is an integrated project for HKPU EIE3105.
 
+### Demonstrations
+|Demonstration  |Github   |YouTube  |
+|---------------|---------|---------|   
+|1 Basic Control|[Video](https://github.com/SS2867/STM32RobotCar/raw/main/Demo1.mp4)|[Video](https://youtu.be/RcZF5WoT7qE)|
+|2 Line Tracking|[Video](https://github.com/SS2867/STM32RobotCar/raw/main/Demo2.mp4)|[Video](https://youtu.be/1vf6ixqQxpQ)|
+|3 Car Parking  |[Video](https://github.com/SS2867/STM32RobotCar/raw/main/Demo3.mp4)|[Video](https://youtu.be/u7v_5H8b4sA)|
+|4 Relay Race   |[Video](https://github.com/SS2867/STM32RobotCar/raw/main/Demo4.mp4)|[Video](https://youtu.be/sToataau61Y)|
+|5 PID Control  |[Video](https://github.com/SS2867/STM32RobotCar/raw/main/Demo5.mp4)|[Video](https://youtu.be/yiMgA1rXB90)|
+
+
 ### Pin Functions in demo 3 & 4:
 PB5 (D4) and PA8 (D7): motor direction control
 

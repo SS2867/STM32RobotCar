@@ -7,4 +7,6 @@ On a road with alternate rough and smooth parts, the car is expected to travel t
 The distance of deviation of the car.
 
 ## Result
+See `Figure_1.png` and `Figure_2.png` for details.
+
 

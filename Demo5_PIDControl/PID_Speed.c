@@ -10,9 +10,9 @@ pid speed_control_r;
 extern int uptime;
 
 float KP = 10;
-float KI = 5;
+float KI = 6;
 float KD = 0;
-float SPEED_TARGET = 7;
+float SPEED_TARGET = 8;
 
 void PID_speed_init(){
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);

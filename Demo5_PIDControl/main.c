@@ -16,7 +16,7 @@ int joystick_y = 50;
 //extern pid speed_control_L;
 extern pid speed_control_l;
 extern pid speed_control_r;
-int uptime = -2000;
+int uptime = -3000;
 void USART2_IRQHandler() {
 	if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET) {
 		char ch = (unsigned char) USART_ReceiveData(USART2); 
