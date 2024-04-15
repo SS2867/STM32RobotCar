@@ -10,7 +10,7 @@ pid speed_control_r;
 extern int uptime;
 
 float KP = 10;
-float KI = 6;
+float KI = 5;
 float KD = 0;
 float SPEED_TARGET = 8;
 

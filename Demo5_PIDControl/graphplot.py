@@ -57,8 +57,10 @@ content = """
 """
 #1       |10       |20       |30       |40       |50
 t_list = []
-l_list = []
-r_list = []
+l_speed_list = []
+l_encoder_list = []
+r_speed_list = []
+r_encoder_list = []
 
 for i in content.split("\n"):
     if not i.strip(): continue
@@ -70,20 +72,26 @@ for i in content.split("\n"):
     r_speed = float(i.split("R")[1][6:8].strip())
 
     t_list.append(t)
-    l_list.append(l_speed)
-    r_list.append(r_speed)
+    l_encoder_list.append(l_odom)
+    l_speed_list.append(l_speed)
+    r_encoder_list.append(r_odom)
+    r_speed_list.append(r_speed)
 
 fig, ax = plt.subplots()
-ax.plot(t_list, l_list)
+ax.plot(t_list, l_speed_list, label='Left Wheel', marker='o')
+ax.plot(t_list, r_speed_list, label='Right Wheel', marker='o')
 ax.set_xlabel('Time (s)')
 ax.set_ylabel('Speed (counts/100ms)')
-ax.set_title('Time-Counting Diagram on Left Wheel')
+ax.set_title('Time-Counting Diagram')
+ax.legend()
 plt.show()
 
 fig, ax = plt.subplots()
-ax.plot(t_list, r_list)
+ax.plot(t_list, l_encoder_list, label='Left Wheel', marker='o')
+ax.plot(t_list, r_encoder_list, label='Right Wheel', marker='o')
 ax.set_xlabel('Time (s)')
-ax.set_ylabel('Speed (counts/100ms)')
-ax.set_title('Time-Counting Diagram on Right Wheel')
+ax.set_ylabel('Distance (counts)')
+ax.set_title('Time-Counting Diagram')
+ax.legend()
 plt.show()
 
