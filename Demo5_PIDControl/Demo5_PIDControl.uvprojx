@@ -416,26 +416,6 @@
               <FilePath>.\RemoteControl.h</FilePath>
             </File>
             <File>
-              <FileName>LineTracking.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\LineTracking.c</FilePath>
-            </File>
-            <File>
-              <FileName>LineTracking.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\LineTracking.h</FilePath>
-            </File>
-            <File>
-              <FileName>parking.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\parking.c</FilePath>
-            </File>
-            <File>
-              <FileName>parking.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\parking.h</FilePath>
-            </File>
-            <File>
               <FileName>PID.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\PID.c</FilePath>

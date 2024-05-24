@@ -3,8 +3,6 @@
 ".\objects\motor.o"
 ".\objects\utils.o"
 ".\objects\remotecontrol.o"
-".\objects\linetracking.o"
-".\objects\parking.o"
 ".\objects\pid.o"
 ".\objects\pid_speed.o"
 ".\objects\misc.o"

@@ -58,25 +58,7 @@ void motor_init(void){
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11; //GPIO_Pin_1;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
-	
-	/*TIM_InternalClockConfig(TIM3);
-	
-	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
-	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseInitStructure.TIM_Period = 100 - 1;
-	TIM_TimeBaseInitStructure.TIM_Prescaler = 720 - 1;
-	TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0;
-	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseInitStructure);
-	
-	TIM_OCStructInit(&TIM_OCInitStructure);
-	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
-	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
-	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
-	TIM_OC4Init(TIM3, &TIM_OCInitStructure);
-	
-	TIM_Cmd(TIM3, ENABLE);
-	
-	TIM_SetCompare4(TIM3, 0);*/
+
 	TIM_OC4Init(TIM2, &TIM_OCInitStructure);
 	TIM_SetCompare4(TIM2, 0);
 	
