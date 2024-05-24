@@ -31,6 +31,8 @@ Apart from the mechanical design, to reproduce all the demonstrations in this re
 |Switch, Fuse, Jumper wires| | | |
 
 ### Pin Functions in demo 3 & 4:
+![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/IOSTM32F103RBT6.png)
+
 PB5 (D4) and PA8 (D7): motor direction control
 
 PB11 (TIM2 Ch4) -> PB4 (D5) and PB10 (D6, TIM2 Ch3): motor PWM speed control 
