@@ -20,7 +20,7 @@ Apart from the mechanical design, to reproduce all the demonstrations in this re
 |Robot Car      |         |Remote Controller |  |
 |---------------|---------|-----------|---------|
 |STM32(F103RBT6)|![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/STM32F103RBT6.png)  |Arduino Uno|![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/ArduinoUno.png)|
-|USB type B mini cable|![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/USB2miniB.png)  |USB type B cable|![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/USB2B.png)|
+|USB type B mini cable|![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/USB2MiniB.png)  |USB type B cable|![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/USB2B.png)|
 |Motor Driver Board (or Motor Shield)|![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/MotorShield.png)  |(Joystick Shield)|![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/JoyStick.png)|
 |I/O sensor board|![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/IOBoard.png)  | | |
 |3.7V Battery x2|![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/3V7Battery.png)  |9V Battery|![image](https://raw.githubusercontent.com/SS2867/STM32RobotCar/main/img/9VBattery.png)|
